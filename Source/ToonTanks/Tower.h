@@ -33,14 +33,19 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	float ViewDistance = 1500.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
-	float FireRange = 3000.f;
+	float FireRange = 750.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	float FireRate = 2.f;
 
 	//variables
 	class ATank* PlayerPawn;
+	FTimerHandle FireRateTimerHandle;
 
 	//functions
+	void CheckFireCondition();
 	FVector GetPlayerLocation();
 	float GetPlayerDistance();
+	bool InView();
+	bool InFireRange();
+	bool IsPlayerMasked();
 };
