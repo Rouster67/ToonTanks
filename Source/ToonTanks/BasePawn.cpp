@@ -52,10 +52,13 @@ void ABasePawn::Fire()
 {
 	if(ProjectileClass)
 	{
-		GetWorld()->SpawnActor<AProjectile>(
+		//Spawns a projectile at the spawn point and stores a reference to it
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 			ProjectileClass,
 			ProjectileSpawnPoint->GetComponentLocation(),
 			ProjectileSpawnPoint->GetComponentRotation()
 		);
+		//Sets the projectile's owner to this pawn
+		Projectile->SetOwner(this);
 	}
 }

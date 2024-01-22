@@ -35,6 +35,8 @@ private:
 	float InitialSpeed = 1300.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	float MaxSpeed = 1300.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
+	float Damage = 50.f;
 
 	//functions
 	UFUNCTION()
