@@ -19,6 +19,8 @@ AProjectile::AProjectile()
 
 	//sets the physics properties of the projectile
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
+	
+	//sets the initial speed and max speed of the projectile
 	ProjectileMovement->InitialSpeed = InitialSpeed;
 	ProjectileMovement->MaxSpeed = MaxSpeed;
 
@@ -31,6 +33,7 @@ void AProjectile::BeginPlay()
 	
 	//binds the OnHit function to the OnComponentHit event
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
+
 }
 
 // Called every frame
