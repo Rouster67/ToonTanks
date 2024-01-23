@@ -17,14 +17,23 @@ ATank::ATank()
     Camera->SetupAttachment(SpringArm);
 }
 
+void ATank::HandleDestruction()
+{
+    Super::HandleDestruction();
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+
+}
+
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	
     //sets the player controller reference
-    PlayerControllerRef = Cast<APlayerController>(GetController());
-    if(PlayerControllerRef == nullptr)
+    TankPlayerController = Cast<APlayerController>(GetController());
+    if(TankPlayerController == nullptr)
         UE_LOG(LogTemp, Error, TEXT("Failed to get a valid APlayerController"));
 }
 
@@ -78,11 +87,11 @@ void ATank::Turn(float Value)
 
 FVector ATank::GetMouseLocation()
 {
-    if(PlayerControllerRef != nullptr)
+    if(TankPlayerController != nullptr)
     {
         //gets the hit result under the mouse cursor
         FHitResult HitResult;
-        PlayerControllerRef->GetHitResultUnderCursor(
+        TankPlayerController->GetHitResultUnderCursor(
             ECollisionChannel::ECC_Visibility,
             false,
             HitResult

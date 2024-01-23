@@ -15,6 +15,8 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+	void HandleDestruction();
+
 protected:
 	//Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -40,4 +42,6 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+
 };

@@ -30,6 +30,12 @@ ABasePawn::ABasePawn()
 
 }
 
+void ABasePawn::HandleDestruction()
+{
+	//TODO: Visua/sound effects
+	
+}
+
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	//Calculates the rotation needed to face the target

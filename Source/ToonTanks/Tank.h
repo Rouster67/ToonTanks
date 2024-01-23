@@ -18,6 +18,8 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	void HandleDestruction();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,6 +30,9 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	//Get Functions
+	APlayerController* GetTankPlayerController() const {return TankPlayerController;}
 
 private:
 	//forward decalre components
@@ -43,7 +48,7 @@ private:
 	float TurnRate = 100;
 
 	//variables
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 
 	//functions
 	void Move(float Value);
