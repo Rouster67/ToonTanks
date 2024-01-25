@@ -20,7 +20,13 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+
 private:
 	class ATank* Tank;
 	class AToonTanksPlayerController* ToonTanksPlayerController;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
+	float StartDelay = 3.f;
+
+	void HandleGameStart();
 };
