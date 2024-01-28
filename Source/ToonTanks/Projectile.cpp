@@ -36,9 +36,18 @@ void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//plays launch sound
+	if(LaunchSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(
+			this,
+			LaunchSound,
+			GetActorLocation()
+		);
+	}
+
 	//binds the OnHit function to the OnComponentHit event
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
-
 }
 
 // Called every frame
@@ -71,6 +80,16 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
 	
+		//plays hit sound
+		if(HitSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(
+				this,
+				HitSound,
+				GetActorLocation()
+			);
+		}
+
 		//Spawn Particles
 		if(HitParticles)
 		{

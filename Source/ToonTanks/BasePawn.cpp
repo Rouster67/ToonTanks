@@ -33,7 +33,15 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::HandleDestruction()
 {
-	//TODO Sound Effects
+	//play death sound
+	if(DeathSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(
+			this,
+			DeathSound,
+			GetActorLocation()
+		);
+	}
 
 	//spawns explosion effect
 	if(DeathEffect)
@@ -44,8 +52,7 @@ void ABasePawn::HandleDestruction()
 			GetActorLocation(),
 			GetActorRotation()
 		);
-	}
-	
+	}	
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)

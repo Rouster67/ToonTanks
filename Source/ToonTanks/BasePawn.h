@@ -46,4 +46,7 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	class UParticleSystem* DeathEffect;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
+	class USoundBase* DeathSound;
+
 };
