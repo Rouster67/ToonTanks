@@ -56,7 +56,7 @@ void ATower::CheckFireCondition()
 {
     if(PlayerPawn)
     {
-        if(InFireRange() && !IsPlayerMasked())
+        if(InFireRange() && !IsPlayerMasked() && PlayerPawn->bAlive)
         {
             Fire();
         }
