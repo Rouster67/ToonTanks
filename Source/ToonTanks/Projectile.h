@@ -29,6 +29,8 @@ private:
 	UStaticMeshComponent* ProjectileMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UProjectileMovementComponent* ProjectileMovement;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UParticleSystemComponent* ProjectileTrail;
 
 	//UPROPERTY variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
@@ -37,6 +39,8 @@ private:
 	float MaxSpeed = 1300.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	float Damage = 50.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
+	class UParticleSystem* HitParticles;
 
 	//functions
 	UFUNCTION()

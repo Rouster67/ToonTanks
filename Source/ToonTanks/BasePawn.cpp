@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -32,7 +33,18 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::HandleDestruction()
 {
-	//TODO: Visua/sound effects
+	//TODO Sound Effects
+
+	//spawns explosion effect
+	if(DeathEffect)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(
+			this,
+			DeathEffect,
+			GetActorLocation(),
+			GetActorRotation()
+		);
+	}
 	
 }
 

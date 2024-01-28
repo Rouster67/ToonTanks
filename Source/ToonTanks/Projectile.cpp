@@ -6,6 +6,8 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystem.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -16,6 +18,9 @@ AProjectile::AProjectile()
 	//sets the root component to the projectile mesh
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
 	RootComponent = ProjectileMesh;
+	//sets projectile trail
+	ProjectileTrail = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Projectile Trail"));
+	ProjectileTrail->SetupAttachment(RootComponent);
 
 	//sets the physics properties of the projectile
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
@@ -48,7 +53,11 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 {
 	//gets the owner of the projectile and checks if it is valid
 	auto MyOwner = GetOwner();
-	if(!MyOwner) return;
+	if(!MyOwner)
+	{
+		Destroy();
+		return;
+	}
 
 	//gets the instigator of the projectile (Ex: the player) and checks if it is valid
 	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
@@ -61,8 +70,18 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	if(OtherActor && OtherActor != this && OtherActor != MyOwner)
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
+	
+		//Spawn Particles
+		if(HitParticles)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(
+				this,
+				HitParticles,
+				GetActorLocation(),
+				GetActorRotation()
+			);
+		}
 	}
-
 	//destroys the projectile
 	Destroy();
 }
