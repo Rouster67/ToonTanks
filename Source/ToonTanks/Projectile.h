@@ -52,6 +52,8 @@ private:
 	USoundBase* LaunchSound;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
 	USoundBase* HitSound;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire Control", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass;
 
 	//functions
 	UFUNCTION()

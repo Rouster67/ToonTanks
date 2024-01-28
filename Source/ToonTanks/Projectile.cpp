@@ -90,6 +90,12 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 			);
 		}
 
+		//Play camera shake
+		if(HitCameraShakeClass)
+		{
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
+		}
+
 		//Spawn Particles
 		if(HitParticles)
 		{

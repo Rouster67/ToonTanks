@@ -43,6 +43,12 @@ void ABasePawn::HandleDestruction()
 		);
 	}
 
+	//plays camera shake
+	if(DeathCameraShakeClass)
+	{
+		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathCameraShakeClass);
+	}
+
 	//spawns explosion effect
 	if(DeathEffect)
 	{
